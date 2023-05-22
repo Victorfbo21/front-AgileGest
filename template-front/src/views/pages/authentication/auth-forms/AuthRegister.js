@@ -29,7 +29,7 @@ import { strengthColor, strengthIndicator } from 'utils/password-strength';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const FirebaseRegister = ({ ...others }) => {
+const RegisterPage = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -168,7 +168,7 @@ const FirebaseRegister = ({ ...others }) => {
               </Grid>
             </Grid>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-email-register">Email / Nome de Usuário</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-register"
                 type="email"
@@ -259,7 +259,6 @@ const FirebaseRegister = ({ ...others }) => {
                 <FormHelperText error>{errors.submit}</FormHelperText>
               </Box>
             )}
-
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
@@ -274,4 +273,4 @@ const FirebaseRegister = ({ ...others }) => {
   );
 };
 
-export default FirebaseRegister;
+export default RegisterPage;
