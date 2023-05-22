@@ -53,9 +53,6 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     }
   }
 }));
-
-// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
-
 const EarningCard = ({ isLoading }) => {
   const theme = useTheme();
 

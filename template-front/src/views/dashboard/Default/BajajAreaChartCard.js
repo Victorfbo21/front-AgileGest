@@ -1,18 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Card, Grid, Typography } from '@mui/material';
-
-// third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-
-// project imports
 import chartData from './chart-data/bajaj-area-chart';
-
-// ===========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||=========================== //
 
 const BajajAreaChartCard = () => {
   const theme = useTheme();
@@ -39,7 +31,7 @@ const BajajAreaChartCard = () => {
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item>
               <Typography variant="subtitle1" sx={{ color: theme.palette.secondary.dark }}>
-                Bajaj Finery
+                Prato Teste
               </Typography>
             </Grid>
             <Grid item>
@@ -51,7 +43,7 @@ const BajajAreaChartCard = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle2" sx={{ color: theme.palette.grey[800] }}>
-            10% Profit
+            
           </Typography>
         </Grid>
       </Grid>

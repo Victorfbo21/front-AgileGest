@@ -1,39 +1,29 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import { Grid, MenuItem, TextField, Typography } from '@mui/material';
-
-// third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-
-// project imports
 import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
-
-// chart data
 import chartData from './chart-data/total-growth-bar-chart';
 
 const status = [
   {
-    value: 'today',
-    label: 'Today'
+    value: 'hoje',
+    label: 'Hoje'
   },
   {
-    value: 'month',
-    label: 'This Month'
+    value: 'mes',
+    label: 'Esse Mês'
   },
   {
-    value: 'year',
-    label: 'This Year'
+    value: 'ano',
+    label: 'Esse Ano'
   }
 ];
-
-// ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
   const [value, setValue] = useState('today');
@@ -81,8 +71,6 @@ const TotalGrowthBarChart = ({ isLoading }) => {
         }
       }
     };
-
-    // do not load chart when loading
     if (!isLoading) {
       ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
     }
@@ -100,7 +88,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                 <Grid item>
                   <Grid container direction="column" spacing={1}>
                     <Grid item>
-                      <Typography variant="subtitle2">Total Growth</Typography>
+                      <Typography variant="subtitle2">Gráfico de Vendas</Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="h3">$2,324.00</Typography>
@@ -110,7 +98,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                 <Grid item>
                   <TextField id="standard-select-currency" select value={value} onChange={(e) => setValue(e.target.value)}>
                     {status.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
+                      <MenuItem key={option.value} value={option.value} defaultValue={status[0]}>
                         {option.label}
                       </MenuItem>
                     ))}
