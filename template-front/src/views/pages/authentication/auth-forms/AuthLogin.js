@@ -34,12 +34,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useNavigate } from 'react-router';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
@@ -56,7 +58,9 @@ const FirebaseLogin = ({ ...others }) => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  const handleSubmitLogin = () => {
+    navigate('/')
+  };
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
@@ -105,7 +109,7 @@ const FirebaseLogin = ({ ...others }) => {
               disableRipple
               disabled
             >
-              OR
+              OU
             </Button>
 
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
@@ -113,7 +117,7 @@ const FirebaseLogin = ({ ...others }) => {
         </Grid>
         <Grid item xs={12} container alignItems="center" justifyContent="center">
           <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">Sign in with Email address</Typography>
+            <Typography variant="subtitle1">Entre com Email</Typography>
           </Box>
         </Grid>
       </Grid>
@@ -147,7 +151,7 @@ const FirebaseLogin = ({ ...others }) => {
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-email-login">Email ou Nome de Usuário</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-login"
                 type="email"
@@ -166,7 +170,7 @@ const FirebaseLogin = ({ ...others }) => {
             </FormControl>
 
             <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+              <InputLabel htmlFor="outlined-adornment-password-login">Senha</InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? 'text' : 'password'}
@@ -201,10 +205,10 @@ const FirebaseLogin = ({ ...others }) => {
                 control={
                   <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
                 }
-                label="Remember me"
+                label="Lembre-me"
               />
               <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                Forgot Password?
+                Esqueceu a senha?
               </Typography>
             </Stack>
             {errors.submit && (
@@ -215,8 +219,16 @@ const FirebaseLogin = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Sign in
+                <Button 
+                disableElevation 
+                disabled={isSubmitting} 
+                fullWidth 
+                size="large" 
+                type="submit" 
+                variant="contained" 
+                color="secondary" 
+                onClick={handleSubmitLogin}>
+                  Entrar
                 </Button>
               </AnimateButton>
             </Box>
