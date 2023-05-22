@@ -5,8 +5,8 @@ import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import Chart from 'react-apexcharts';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
-import ChartDataMonth from './chart-data/total-order-month-line-chart';
-import ChartDataYear from './chart-data/total-order-year-line-chart';
+import ChartDataMonth from '../chart-data/total-order-month-line-chart';
+import ChartDataYear from '../chart-data/total-order-year-line-chart';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
@@ -85,6 +85,15 @@ const FaturamentoTotalCard = ({ isLoading }) => {
                     </Avatar>
                   </Grid>
                   <Grid item>
+                  <Button
+                      disableElevation
+                      variant={timeValue ? 'contained' : 'text'}
+                      size="small"
+                      sx={{ color: 'inherit' }}
+                      onClick={(e) => handleChangeTime(e, true)}
+                    >
+                      Dia
+                    </Button>
                     <Button
                       disableElevation
                       variant={timeValue ? 'contained' : 'text'}

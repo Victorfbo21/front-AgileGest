@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Card, Grid, Typography } from '@mui/material';
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import chartData from './chart-data/bajaj-area-chart';
+import chartData from '../chart-data/bajaj-area-chart';
 
 const BajajAreaChartCard = () => {
   const theme = useTheme();
@@ -31,7 +31,7 @@ const BajajAreaChartCard = () => {
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item>
               <Typography variant="subtitle1" sx={{ color: theme.palette.secondary.dark }}>
-                Prato Teste
+                Valor Faturado
               </Typography>
             </Grid>
             <Grid item>

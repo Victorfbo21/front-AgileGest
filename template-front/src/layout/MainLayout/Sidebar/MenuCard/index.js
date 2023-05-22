@@ -36,8 +36,6 @@ const CardStyle = styled(Card)(({ theme }) => ({
   }
 }));
 
-// ==============================|| PROGRESS BAR WITH LABEL ||============================== //
-
 function LinearProgressWithLabel() {
 
   return (
