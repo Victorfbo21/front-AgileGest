@@ -2,8 +2,9 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default/FinanceiroDashboard')));
 const DashBoardFinanceiro = Loadable(lazy(() => import('views/dashboard/Default/FinanceiroDashboard')));
+const NovoAtendimento = Loadable(lazy(() => import('views/pages/authentication/Atendimentos/novoatendimento')))
+const NovoCliente = Loadable(lazy(() => import('views/pages/authentication/Clientes/novocliente')))
 
 const MainRoutes = {
   path: '/',
@@ -13,7 +14,15 @@ const MainRoutes = {
       path: '/',
       element: <DashBoardFinanceiro />
     },
-    
+    {
+      path: '/novoatendimento',
+      element: <NovoAtendimento />
+    },
+    {
+      path: '/novocliente',
+      element: <NovoCliente />
+    }
+
   ]
 };
 

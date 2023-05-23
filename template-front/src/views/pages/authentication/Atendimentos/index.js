@@ -1,10 +1,10 @@
 
 
-const MesasDashBoard = () => {
+const AtendimentoDashBoard = () => {
 return (
     <>
     </>
 )
 }
 
-export default MesasDashBoard;
+export default AtendimentoDashBoard;
