@@ -18,7 +18,7 @@ const atendimentos = {
       id: 'novoatendimento',
       title: 'Novo Atendimento',
       type: 'item',
-      url: '/atendimentos',
+      url: '/novoatendimento',
       icon: icons.AddIcon,
       breadcrumbs: false
     }
