@@ -1,6 +1,7 @@
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 
-const icons = { CurrencyExchangeIcon };
+const icons = { CurrencyExchangeIcon  , FolderCopyIcon};
 const financeiro = {
   id: 'financeiro',
   title: 'Financeiro',
@@ -12,6 +13,14 @@ const financeiro = {
       type: 'item',
       url: '',
       icon: icons.CurrencyExchangeIcon,
+      breadcrumbs: false
+    },
+    {
+      id: 'financeiro_relatorios',
+      title: 'Relatórios',
+      type: 'item',
+      url: '',
+      icon: icons.FolderCopyIcon,
       breadcrumbs: false
     }
   ]

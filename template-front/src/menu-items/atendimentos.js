@@ -1,5 +1,6 @@
 import ContentCutIcon from '@mui/icons-material/ContentCut';
-const icons = { ContentCutIcon };
+import AddIcon from '@mui/icons-material/Add';
+const icons = { ContentCutIcon, AddIcon };
 const atendimentos = {
   id: 'atendimentos',
   title: 'Atendimentos',
@@ -18,7 +19,7 @@ const atendimentos = {
       title: 'Novo Atendimento',
       type: 'item',
       url: '/atendimentos',
-      icon: icons.ContentCutIcon,
+      icon: icons.AddIcon,
       breadcrumbs: false
     }
   ]
