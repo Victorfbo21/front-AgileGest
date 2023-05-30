@@ -19,7 +19,7 @@ const cadastros = {
       id: 'colaborador',
       title: 'Novo Colaborador',
       type: 'item',
-      url: '',
+      url: '/novocolaborador',
       icon: icons.Groups2Icon,
       breadcrumbs: false
     }

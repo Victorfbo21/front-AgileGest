@@ -4,7 +4,7 @@ import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } fr
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
 
-const NovoCliente = () => {
+const NovoColaborador = () => {
 
     const handleSubmit = () => {
         toast.error('Email ou Senha incorretos !')
@@ -18,7 +18,7 @@ const NovoCliente = () => {
                     <Typography
                         variant='h2'
                     >
-                        Adicionar Clientes
+                        Adicionar Colaborador
                     </Typography>
                     <CardContent>
                         <FormControl>
@@ -29,8 +29,8 @@ const NovoCliente = () => {
                                         type='text'
                                         placeholder='Nome do Cliente'
                                         sx={{ m: 1 }}
+                                        size='large'
                                         variant='standard'
-
                                     >
                                     </TextField>
                                     <InputMask
@@ -39,8 +39,8 @@ const NovoCliente = () => {
                                     >{() => <TextField
                                         name="telefone"
                                         label="Telefone"
-                                        variant='standard'
                                         size='medium'
+                                        variant='standard'
                                         sx={{ m: 1 }}
 
                                     />}
@@ -52,6 +52,7 @@ const NovoCliente = () => {
                                         sx={{ m: 1 }}
                                         size='medium'
                                         variant='standard'
+
                                     >
                                     </TextField>
 
@@ -64,11 +65,21 @@ const NovoCliente = () => {
                                         placeholder='Data de Nascimento'
                                         label="Data de Nascimento"
                                         variant='standard'
-
                                         size='medium'
                                         sx={{ m: 1 }}
                                     />}
                                     </InputMask>
+
+                                    <TextField
+                                        label='Função'
+                                        type='text'
+                                        placeholder='Função do Colaborador'
+                                        sx={{ m: 1 }}
+                                        size='medium'
+                                        variant='standard'
+
+                                    >
+                                    </TextField>
                                 </Grid>
                                 <Box sx={{ mt: 2 }}>
                                     <AnimateButton>
@@ -86,4 +97,4 @@ const NovoCliente = () => {
     )
 }
 
-export default NovoCliente;
+export default NovoColaborador;
