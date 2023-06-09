@@ -6,6 +6,7 @@ const DashBoardFinanceiro = Loadable(lazy(() => import('views/dashboard/Default/
 const NovoAtendimento = Loadable(lazy(() => import('views/pages/authentication/Atendimentos/novoatendimento')))
 const NovoCliente = Loadable(lazy(() => import('views/pages/authentication/Clientes/novocliente')))
 const NovoColaborador = Loadable(lazy(() => import('views/pages/authentication/Colaborador/novoColaborador')))
+const NovoServico = Loadable(lazy(() => import('views/pages/authentication/Servicos/novoservico')))
 
 const MainRoutes = {
   path: '/',
@@ -26,7 +27,12 @@ const MainRoutes = {
     {
       path: '/novocolaborador',
       element: <NovoColaborador />
+    },
+    {
+      path: '/novoservico',
+      element: <NovoServico />
     }
+
 
   ]
 };

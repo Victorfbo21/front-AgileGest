@@ -4,10 +4,8 @@ import atendimentos from './atendimentos'
 import financeiro from './financeiro';
 import cadastros from './cadastros';
 
-// ==============================|| MENU ITEMS ||============================== //
-
 const menuItems = {
-  items: [dashboard, pages , atendimentos, financeiro, cadastros]
+  items: [dashboard, pages, atendimentos, financeiro, cadastros]
 };
 
 export default menuItems;

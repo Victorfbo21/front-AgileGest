@@ -16,10 +16,12 @@ const NovoAtendimento = () => {
         <MainCard>
           <Typography
             variant='h2'
+            textAlign={"center"}
           >
             Novo Atendimento
           </Typography>
-          <CardContent>
+          <CardContent
+          >
             <FormControl>
               <form onSubmit={handleSubmit}>
                 <Grid xs={12} sm={6} display='inline-list-item'>
@@ -37,6 +39,16 @@ const NovoAtendimento = () => {
                     label='Serviço'
                     type='text'
                     placeholder='Serviço Prestado'
+                    sx={{ m: 1 }}
+                    size='medium'
+                    variant='standard'
+
+                  >
+                  </TextField>
+                  <TextField
+                    label='Colaborador'
+                    type='text'
+                    placeholder=''
                     sx={{ m: 1 }}
                     size='medium'
                     variant='standard'

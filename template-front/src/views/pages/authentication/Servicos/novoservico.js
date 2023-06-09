@@ -1,10 +1,9 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
-import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
 
-const NovoCliente = () => {
+const NovoServico = () => {
 
     const handleSubmit = () => {
         toast.error('Email ou Senha incorretos !')
@@ -17,57 +16,46 @@ const NovoCliente = () => {
                 <MainCard>
                     <Typography
                         variant='h2'
+                        textAlign={"center"}
                     >
-                        Adicionar Clientes
+                        Adicionar Serviço
                     </Typography>
-                    <CardContent>
+                    <CardContent
+                        textAlign={"center"}
+                    >
                         <FormControl>
                             <form onSubmit={handleSubmit}>
                                 <Grid xs={12} sm={6} display='inline-list-item'>
                                     <TextField
-                                        label='Nome'
+                                        label='Nome Serviço'
                                         type='text'
-                                        placeholder='Nome do Cliente'
+                                        placeholder='Nome do Serviço'
                                         sx={{ m: 1 }}
+                                        size='large'
                                         variant='standard'
-
                                     >
                                     </TextField>
-                                    <InputMask
-                                        mask={"(99) 99999-9999"}
-                                        name="telefone"
-                                    >{() => <TextField
-                                        name="telefone"
-                                        label="Telefone"
-                                        variant='standard'
-                                        size='medium'
-                                        sx={{ m: 1 }}
 
-                                    />}
-                                    </InputMask>
                                     <TextField
-                                        label='Email'
+                                        label='Valor'
                                         type='text'
-                                        placeholder='Email do Cliente'
+                                        placeholder='Valor do Serviço'
                                         sx={{ m: 1 }}
                                         size='medium'
                                         variant='standard'
+
                                     >
                                     </TextField>
-
-                                    <InputMask
-                                        mask={"99/99/9999"}
-                                        name="datanascimento"
-                                    // onChange={setFormData}
-                                    >{() => <TextField
-                                        name="telefone"
-                                        placeholder='Data de Nascimento'
-                                        label="Data de Nascimento"
-                                        variant='standard'
-                                        size='medium'
+                                    <TextField
+                                        label='Tempo Medio'
+                                        type='text'
+                                        placeholder='Tempo Médio do Serviço'
                                         sx={{ m: 1 }}
-                                    />}
-                                    </InputMask>
+                                        size='medium'
+                                        variant='standard'
+
+                                    >
+                                    </TextField>
                                 </Grid>
                                 <Box sx={{ mt: 2 }}>
                                     <AnimateButton>
@@ -85,4 +73,4 @@ const NovoCliente = () => {
     )
 }
 
-export default NovoCliente;
+export default NovoServico;

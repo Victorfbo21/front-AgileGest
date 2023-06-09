@@ -17,10 +17,13 @@ const NovoColaborador = () => {
                 <MainCard>
                     <Typography
                         variant='h2'
+                        textAlign={"center"}
                     >
                         Adicionar Colaborador
                     </Typography>
-                    <CardContent>
+                    <CardContent
+                        textAlign={"center"}
+                    >
                         <FormControl>
                             <form onSubmit={handleSubmit}>
                                 <Grid xs={12} sm={6} display='inline-list-item'>
