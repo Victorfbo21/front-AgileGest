@@ -27,6 +27,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import authServices from 'services/authServices';
 import InputMask from 'react-input-mask';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 const RegisterPage = () => {
@@ -56,11 +57,16 @@ const RegisterPage = () => {
     setLevel(strengthColor(temp));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     const registrar = await authServices.AuthService.signUp(name, email, password, phone, doc)
-    console.log(registrar)
-    if (registrar) {
-      navigate('/')
+    console.log(registrar._id)
+    if (registrar._id) {
+      toast.success('Cadastrado !')
+      navigate('/dashboard')
+    }
+    else {
+      toast.error('Erro as Cadastrar')
     }
   }
 

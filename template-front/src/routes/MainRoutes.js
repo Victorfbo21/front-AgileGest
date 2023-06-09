@@ -8,6 +8,7 @@ const NovoCliente = Loadable(lazy(() => import('views/pages/authentication/Clien
 const NovoColaborador = Loadable(lazy(() => import('views/pages/authentication/Colaborador/novoColaborador')))
 const NovoServico = Loadable(lazy(() => import('views/pages/authentication/Servicos/novoservico')))
 
+
 const MainRoutes = {
   path: '/',
   element: <MainLayout />,

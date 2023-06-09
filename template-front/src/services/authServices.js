@@ -19,12 +19,16 @@ class AuthService {
                 .then(response => response.json());
 
             if (register && register.logged) {
-                localStorage.setItem('user', JSON.stringify(register.logged));
+                localStorage.setItem('user', JSON.stringify(register));
                 localStorage.setItem('auth', JSON.stringify(register.auth));
-                localStorage.setItem('name', JSON.stringify(register.logged.name));
+                localStorage.setItem('name', JSON.stringify(register.name));
+                login(email, password)
                 return register.logged;
             }
-            return null;
+            else {
+                return register
+            }
+
         } catch (error) {
             return null;
         }
