@@ -16,8 +16,7 @@ class AuthService {
                     'Content-Type': 'application/json',
                 }
             })
-                .then((response) => console.log(response.json()))
-                .then(response => response);
+                .then(response => response.json());
 
             if (register && register.logged) {
                 localStorage.setItem('user', JSON.stringify(register.logged));
@@ -45,7 +44,6 @@ class AuthService {
                 }
             })
                 .then(response => response.json())
-                .then(response => response);
 
             if (response && response.logged) {
                 localStorage.setItem('user', JSON.stringify(response.logged));
@@ -53,14 +51,14 @@ class AuthService {
                 localStorage.setItem('userid', response.logged._id);
                 localStorage.setItem('name', response.logged.name);
                 localStorage.setItem('token', response.auth.token);
-                auth.refreshToken = response.auth.refreshToken;
-                auth.status = response.auth.status;
-                auth.token = response.auth.token;
                 return response.logged;
             }
-            return null;
+            else {
+                return response
+            }
+
         } catch (error) {
-            return null;
+            return error;
         }
     };
 }

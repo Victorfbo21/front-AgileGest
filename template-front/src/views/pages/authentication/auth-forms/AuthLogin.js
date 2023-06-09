@@ -43,16 +43,16 @@ const FirebaseLogin = ({ ...others }) => {
     console.error('Login');
   };
 
-  const handleSubmitLogin = async () => {
-
+  const handleSubmitLogin = async (e) => {
+    e.preventDefault()
     const userLogin = await authServices.AuthService.login(email, password)
-    console.log(userLogin)
-    if (userLogin) {
-      toast("Login Ok !")
-      navigate('/')
+    console.log(userLogin._id)
+    if (userLogin._id != undefined) {
+      toast.success("Login Ok !")
+      navigate('/dashboard')
     }
-    if (userLogin == null) {
-      toast.error("Login Failed !")
+    else {
+      toast.error('Falha no Login')
     }
   }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
@@ -9,7 +9,6 @@ import {
   Divider,
   FormControl,
   FormControlLabel,
-  FormHelperText,
   Grid,
   IconButton,
   InputAdornment,
@@ -20,36 +19,35 @@ import {
   useMediaQuery
 } from '@mui/material';
 
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-import useScriptRef from 'hooks/useScriptRef';
 import Google from 'assets/images/icons/social-google.svg';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import authServices from 'services/authServices';
+import InputMask from 'react-input-mask';
+import { useNavigate } from 'react-router';
 
-const RegisterPage = ({ ...others }) => {
+
+const RegisterPage = () => {
   const theme = useTheme();
-  const scriptedRef = useScriptRef();
+  const navigate = useNavigate()
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setshowPassword] = useState(false);
+  const clickPassword = () => setshowPassword((show) => !show);
   const [checked, setChecked] = useState(true);
-
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState();
 
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [phone, setPhone] = useState();
+  const [doc, setDoc] = useState();
+
   const googleHandler = async () => {
     console.error('Register');
-  };
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
   };
 
   const changePassword = (value) => {
@@ -58,9 +56,13 @@ const RegisterPage = ({ ...others }) => {
     setLevel(strengthColor(temp));
   };
 
-  useEffect(() => {
-    changePassword('123456');
-  }, []);
+  const handleSubmit = async () => {
+    const registrar = await authServices.AuthService.signUp(name, email, password, phone, doc)
+    console.log(registrar)
+    if (registrar) {
+      navigate('/')
+    }
+  }
 
   return (
     <>
@@ -114,161 +116,134 @@ const RegisterPage = ({ ...others }) => {
           </Box>
         </Grid>
       </Grid>
-
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-          submit: null
-        }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
-        })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
-        }}
-      >
-        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-          <form noValidate onSubmit={handleSubmit} {...others}>
-            <Grid container spacing={matchDownSM ? 0 : 2}>
-              <Grid item xs={12} sm={6}>
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={matchDownSM ? 0 : 2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Nome"
+              margin="normal"
+              name="nome"
+              type="text"
+              required={true}
+              onChange={e => setName(e.target.value)}
+              sx={{ ...theme.typography.customInput }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <InputMask
+              mask="999.999.999-99"
+              disabled={false}
+              maskChar=""
+              onChange={(e) => setDoc(e.target.value)}
+            >
+              {() => (
                 <TextField
-                  fullWidth
-                  label="Nome"
-                  margin="normal"
-                  name="nome"
-                  type="text"
-                  defaultValue=""
+                  required={true}
+                  label="CPF"
+                  type='text'
                   sx={{ ...theme.typography.customInput }}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Sobrenome"
-                  margin="normal"
-                  name="sobrenome"
-                  type="text"
-                  defaultValue=""
-                  sx={{ ...theme.typography.customInput }}
-                />
-              </Grid>
-            </Grid>
-            <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-email-register">Email / Nome de Usuário</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-email-register"
-                type="email"
-                value={values.email}
-                name="email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                inputProps={{}}
-              />
-              {touched.email && errors.email && (
-                <FormHelperText error id="standard-weight-helper-text--register">
-                  {errors.email}
-                </FormHelperText>
               )}
-            </FormControl>
-
-            <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-              <InputLabel htmlFor="outlined-adornment-password-register">Senha</InputLabel>
+            </InputMask>
+          </Grid>
+        </Grid>
+        <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="outlined-adornment-email-register">Email / Nome de Usuário</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-email-register"
+            type="email"
+            name="email"
+            required={true}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </FormControl>
+        <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="outlined-adornment-email-register">Número</InputLabel>
+          <InputMask
+            mask="85 999999999"
+            maskChar=""
+            onChange={(e) => setPhone(e.target.value)}
+          >
+            {() => (
               <OutlinedInput
-                id="outlined-adornment-password-register"
-                type={showPassword ? 'text' : 'password'}
-                value={values.password}
-                name="password"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={(e) => {
-                  handleChange(e);
-                  changePassword(e.target.value);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                      size="large"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                inputProps={{}}
+                placeholder='Numero'
+                required={true}
               />
-              {touched.password && errors.password && (
-                <FormHelperText error id="standard-weight-helper-text-password-register">
-                  {errors.password}
-                </FormHelperText>
-              )}
-            </FormControl>
-
-            {strength !== 0 && (
-              <FormControl fullWidth>
-                <Box sx={{ mb: 2 }}>
-                  <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                      <Box style={{ backgroundColor: level?.color }} sx={{ width: 85, height: 8, borderRadius: '7px' }} />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1" fontSize="0.75rem">
-                        {level?.label}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </FormControl>
             )}
+          </InputMask>
+        </FormControl>
 
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
-                  }
-                  label={
-                    <Typography variant="subtitle1">
-                      Concordo com &nbsp;
-                      <Typography variant="subtitle1" component={Link} to="#">
-                        Termos e Condições.
-                      </Typography>
-                    </Typography>
-                  }
-                />
+        <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+          <InputLabel htmlFor="outlined-adornment-password-register">Senha</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password-register"
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            label="Password"
+            required={true}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              changePassword(e.target.value)
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={clickPassword}
+                  edge="end"
+                  size="large"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            inputProps={{}}
+          />
+        </FormControl>
+
+        {strength !== 0 && (
+          <FormControl fullWidth>
+            <Box sx={{ mb: 2 }}>
+              <Grid container spacing={2} alignItems="center">
+                <Grid item>
+                  <Box style={{ backgroundColor: level?.color }} sx={{ width: 85, height: 8, borderRadius: '7px' }} />
+                </Grid>
+                <Grid item>
+                  <Typography variant="subtitle1" fontSize="0.75rem">
+                    {level?.label}
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            {errors.submit && (
-              <Box sx={{ mt: 3 }}>
-                <FormHelperText error>{errors.submit}</FormHelperText>
-              </Box>
-            )}
-            <Box sx={{ mt: 2 }}>
-              <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
-                  Registrar
-                </Button>
-              </AnimateButton>
             </Box>
-          </form>
+          </FormControl>
         )}
-      </Formik>
+
+        <Grid container alignItems="center" justifyContent="space-between">
+          <Grid item>
+            <FormControlLabel
+              control={
+                <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
+              }
+              label={
+                <Typography variant="subtitle1">
+                  Concordo com &nbsp;
+                  <Typography variant="subtitle1" component={Link} to="#">
+                    Termos e Condições.
+                  </Typography>
+                </Typography>
+              }
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ mt: 2 }}>
+          <AnimateButton>
+            <Button fullWidth size="large" type="submit" variant="contained" color="secondary">
+              Registrar
+            </Button>
+          </AnimateButton>
+        </Box>
+      </form>
     </>
   );
 };
