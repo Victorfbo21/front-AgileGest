@@ -2,12 +2,25 @@ import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
 import { toast } from 'react-toastify';
+import ServicosServices from 'services/servicosServices';
+import { useState } from 'react';
 
 const NovoServico = () => {
 
-    const handleSubmit = () => {
-        toast.error('Email ou Senha incorretos !')
-        console.log('Chamado')
+    const [nomeServico, setNomeServico] = useState('')
+    const [valorServico, setValorServico] = useState('')
+    const [tempoMedio, setTempoMedio] = useState('')
+
+    const handleSubmit = async () => {
+
+        const cadastrarServico = await ServicosServices.cadastrarServico(nomeServico, valorServico, tempoMedio)
+        if (cadastrarServico._id) {
+            toast.success("Novo Serviço Cadastrado !")
+            console.log("OK !!")
+        }
+        else {
+            toast.error("Falha ao Cadastrar Serviço")
+        }
     }
 
     return (
@@ -33,6 +46,7 @@ const NovoServico = () => {
                                         sx={{ m: 1 }}
                                         size='large'
                                         variant='standard'
+                                        onChange={e => setNomeServico(e.target.value)}
                                     >
                                     </TextField>
 
@@ -43,7 +57,7 @@ const NovoServico = () => {
                                         sx={{ m: 1 }}
                                         size='medium'
                                         variant='standard'
-
+                                        onChange={e => setValorServico(e.target.value)}
                                     >
                                     </TextField>
                                     <TextField
@@ -53,6 +67,7 @@ const NovoServico = () => {
                                         sx={{ m: 1 }}
                                         size='medium'
                                         variant='standard'
+                                        onChange={e => setTempoMedio(e.target.value)}
 
                                     >
                                     </TextField>
