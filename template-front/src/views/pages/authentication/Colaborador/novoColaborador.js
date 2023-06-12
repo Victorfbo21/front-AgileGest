@@ -3,22 +3,25 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
+import ColaboradorService from 'services/colaboradorServices';
 import { useState } from 'react';
-import ClienteService from 'services/clientesServices';
 
-const NovoCliente = () => {
+const NovoColaborador = () => {
+
 
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('')
     const [email, setEmail] = useState('')
     const [data_nacimento, setData_nascimento] = useState('')
+    const [funcao, setFuncao] = useState('')
 
     const handleSubmit = async () => {
-        const registrarCliente = await ClienteService.cadastrarClinte(nome, telefone, email, data_nacimento)
-        if (registrarCliente) {
-            toast.success('Cliente cadastrado com sucesso!')
-            console.log("OK!!")
+        const cadastrarColab = await ColaboradorService.cadastrarColaborador(nome, telefone, email, data_nacimento, funcao)
+        if (cadastrarColab) {
+            console.log("Cadastrado!")
+            toast.success("Usuário Cadastrado!")
         }
+
     }
 
     return (
@@ -29,9 +32,10 @@ const NovoCliente = () => {
                         variant='h2'
                         textAlign={"center"}
                     >
-                        Adicionar Clientes
+                        Adicionar Colaborador
                     </Typography>
                     <CardContent
+                        textAlign={"center"}
                     >
                         <FormControl>
                             <form onSubmit={handleSubmit}>
@@ -41,9 +45,9 @@ const NovoCliente = () => {
                                         type='text'
                                         placeholder='Nome do Cliente'
                                         sx={{ m: 1 }}
+                                        size='large'
                                         variant='standard'
                                         onChange={e => setNome(e.target.value)}
-
                                     >
                                     </TextField>
                                     <InputMask
@@ -53,8 +57,8 @@ const NovoCliente = () => {
                                     >{() => <TextField
                                         name="telefone"
                                         label="Telefone"
-                                        variant='standard'
                                         size='medium'
+                                        variant='standard'
                                         sx={{ m: 1 }}
 
                                     />}
@@ -83,6 +87,17 @@ const NovoCliente = () => {
                                         sx={{ m: 1 }}
                                     />}
                                     </InputMask>
+
+                                    <TextField
+                                        label='Função'
+                                        type='text'
+                                        placeholder='Função do Colaborador'
+                                        sx={{ m: 1 }}
+                                        size='medium'
+                                        variant='standard'
+                                        onChange={e => setFuncao(e.target.value)}
+                                    >
+                                    </TextField>
                                 </Grid>
                                 <Box sx={{ mt: 2 }}>
                                     <AnimateButton>
@@ -95,9 +110,9 @@ const NovoCliente = () => {
                         </FormControl>
                     </CardContent>
                 </MainCard>
-            </Grid>
+            </Grid >
         </>
     )
 }
 
-export default NovoCliente;
+export default NovoColaborador;

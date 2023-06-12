@@ -1,27 +1,68 @@
 import MainCard from 'ui-component/cards/MainCard';
-import { CardContent, FormControl, Grid, TextField } from '@mui/material';
-
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const NovoAtendimento = () => {
+
+  const handleSubmit = () => {
+    toast.error('Email ou Senha incorretos !')
+    console.log('Chamado')
+  }
+
   return (
     <>
-      <Grid>
+      <Grid direction="column" justifyContent="center" spacing={2}>
         <MainCard>
-          <CardContent>
+          <Typography
+            variant='h2'
+            textAlign={"center"}
+          >
+            Novo Atendimento
+          </Typography>
+          <CardContent
+          >
             <FormControl>
-              <form>
-                <Grid item xs={12} sm={6}>
+              <form onSubmit={handleSubmit}>
+                <Grid xs={12} sm={6} display='inline-list-item'>
+                  <TextField
+                    label='Nome Cliente'
+                    type='text'
+                    placeholder='Nome do Cliente'
+                    sx={{ m: 1 }}
+                    size='large'
+                    variant='standard'
+                  >
+                  </TextField>
+
                   <TextField
                     label='Serviço'
                     type='text'
+                    placeholder='Serviço Prestado'
+                    sx={{ m: 1 }}
+                    size='medium'
+                    variant='standard'
+
                   >
                   </TextField>
                   <TextField
-                    label='Cliente'
+                    label='Colaborador'
                     type='text'
+                    placeholder=''
+                    sx={{ m: 1 }}
+                    size='medium'
+                    variant='standard'
+
                   >
                   </TextField>
                 </Grid>
+                <Box sx={{ mt: 2 }}>
+                  <AnimateButton>
+                    <Button size="large" type="submit" variant="contained" color="secondary">
+                      Cadastrar
+                    </Button>
+                  </AnimateButton>
+                </Box>
               </form>
             </FormControl>
           </CardContent>
