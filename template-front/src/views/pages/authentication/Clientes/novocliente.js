@@ -3,12 +3,22 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import ClienteService from 'services/clientesServices';
 
 const NovoCliente = () => {
 
-    const handleSubmit = () => {
-        toast.error('Email ou Senha incorretos !')
-        console.log('Chamado')
+    const [nome, setNome] = useState('');
+    const [telefone, setTelefone] = useState('')
+    const [email, setEmail] = useState('')
+    const [data_nacimento, setData_nascimento] = useState('')
+
+    const handleSubmit = async () => {
+        const registrarCliente = await ClienteService.cadastrarClinte(nome, telefone, email, data_nacimento)
+        if (registrarCliente) {
+            toast.success('Cliente cadastrado com sucesso!')
+            console.log("OK!!")
+        }
     }
 
     return (
@@ -17,10 +27,12 @@ const NovoCliente = () => {
                 <MainCard>
                     <Typography
                         variant='h2'
+                        textAlign={"center"}
                     >
                         Adicionar Clientes
                     </Typography>
-                    <CardContent>
+                    <CardContent
+                    >
                         <FormControl>
                             <form onSubmit={handleSubmit}>
                                 <Grid xs={12} sm={6} display='inline-list-item'>
@@ -30,12 +42,14 @@ const NovoCliente = () => {
                                         placeholder='Nome do Cliente'
                                         sx={{ m: 1 }}
                                         variant='standard'
+                                        onChange={e => setNome(e.target.value)}
 
                                     >
                                     </TextField>
                                     <InputMask
                                         mask={"(99) 99999-9999"}
                                         name="telefone"
+                                        onChange={e => setTelefone(e.target.value)}
                                     >{() => <TextField
                                         name="telefone"
                                         label="Telefone"
@@ -52,13 +66,14 @@ const NovoCliente = () => {
                                         sx={{ m: 1 }}
                                         size='medium'
                                         variant='standard'
+                                        onChange={e => setEmail(e.target.value)}
                                     >
                                     </TextField>
 
                                     <InputMask
                                         mask={"99/99/9999"}
                                         name="datanascimento"
-                                    // onChange={setFormData}
+                                        onChange={e => setData_nascimento(e.target.value)}
                                     >{() => <TextField
                                         name="telefone"
                                         placeholder='Data de Nascimento'
