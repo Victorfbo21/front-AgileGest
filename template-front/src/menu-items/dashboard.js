@@ -10,7 +10,7 @@ const dashboard = {
       id: 'default',
       title: 'Dashboard',
       type: 'item',
-      url: '/dashboard/default',
+      url: '/dashboardfinanceiro',
       icon: icons.IconDashboard,
       breadcrumbs: false
     }

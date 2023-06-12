@@ -7,9 +7,9 @@ import { useState } from 'react';
 
 const NovoServico = () => {
 
-    const [nomeServico, setNomeServico] = useState('')
-    const [valorServico, setValorServico] = useState('')
-    const [tempoMedio, setTempoMedio] = useState('')
+    const [nomeServico, setNomeServico] = useState()
+    const [valorServico, setValorServico] = useState()
+    const [tempoMedio, setTempoMedio] = useState()
 
     const handleSubmit = async () => {
 
@@ -17,6 +17,9 @@ const NovoServico = () => {
         if (cadastrarServico._id) {
             toast.success("Novo Serviço Cadastrado !")
             console.log("OK !!")
+        }
+        if (!nomeServico && !valorServico && !tempoMedio) {
+            toast.error("Preencha todos os campos !")
         }
         else {
             toast.error("Falha ao Cadastrar Serviço")
