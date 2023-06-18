@@ -14,12 +14,9 @@ import {
     Typography,
 
 } from '@mui/material';
-
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import { useEffect } from 'react';
-
-
 
 const AtendimentosTable = () => {
 
