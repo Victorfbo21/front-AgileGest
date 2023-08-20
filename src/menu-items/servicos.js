@@ -12,7 +12,7 @@ const servicos = {
             id: 'lista_servicos',
             title: 'Serviços',
             type: 'item',
-            url: '/servicosTable',
+            url: '/servicos',
             icon: icons.PersonAddAltIcon,
             breadcrumbs: false
         },
