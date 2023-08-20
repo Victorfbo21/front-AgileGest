@@ -1,6 +1,7 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
+import PageTitle from 'layout/PageTitle';
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
 import { useState } from 'react';
@@ -23,14 +24,12 @@ const NovoCliente = () => {
 
     return (
         <>
+            <PageTitle
+                heading='Novo Cliente'
+            />
+
             <Grid direction="column" justifyContent="center" spacing={2}>
                 <MainCard>
-                    <Typography
-                        variant='h2'
-                        textAlign={"center"}
-                    >
-                        Adicionar Clientes
-                    </Typography>
                     <CardContent
                     >
                         <FormControl>

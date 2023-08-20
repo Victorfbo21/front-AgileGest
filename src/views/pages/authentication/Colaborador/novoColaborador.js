@@ -1,6 +1,7 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
+import PageTitle from 'layout/PageTitle';
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
 import ColaboradorService from 'services/colaboradorServices';
@@ -26,14 +27,11 @@ const NovoColaborador = () => {
 
     return (
         <>
+            <PageTitle
+                heading='Novo Colaborador'
+            />
             <Grid direction="column" justifyContent="center" spacing={2}>
                 <MainCard>
-                    <Typography
-                        variant='h2'
-                        textAlign={"center"}
-                    >
-                        Adicionar Colaborador
-                    </Typography>
                     <CardContent
                         textAlign={"center"}
                     >

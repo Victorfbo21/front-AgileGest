@@ -1,5 +1,6 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import PageTitle from 'layout/PageTitle';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
 
 const NovoAtendimento = () => {
@@ -10,14 +11,11 @@ const NovoAtendimento = () => {
 
   return (
     <>
+      <PageTitle
+        heading='Novo Atendimento'
+      />
       <Grid direction="column" justifyContent="center" spacing={2}>
         <MainCard>
-          <Typography
-            variant='h2'
-            textAlign={"center"}
-          >
-            Novo Atendimento
-          </Typography>
           <CardContent
           >
             <FormControl>

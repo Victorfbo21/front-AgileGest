@@ -12,7 +12,7 @@ const funcionarios = {
             id: 'Colaboradores',
             title: 'Colaboradores',
             type: 'item',
-            url: '/novocliente',
+            url: '/colaboradores',
             icon: icons.PersonAddAltIcon,
             breadcrumbs: false
         },

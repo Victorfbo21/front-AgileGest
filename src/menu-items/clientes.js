@@ -12,7 +12,7 @@ const clientes = {
       id: 'cliente',
       title: 'Clientes',
       type: 'item',
-      url: '/novocliente',
+      url: '/clientes',
       icon: icons.PersonAddAltIcon,
       breadcrumbs: false
     },
@@ -20,7 +20,7 @@ const clientes = {
       id: 'novo_cliente',
       title: 'Novo Cliente',
       type: 'item',
-      url: '/novocolaborador',
+      url: '/novocliente',
       icon: icons.Groups2Icon,
       breadcrumbs: false
     }

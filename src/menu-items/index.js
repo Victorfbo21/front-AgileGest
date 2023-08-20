@@ -6,7 +6,14 @@ import funcionarios from './funcionarios';
 import servicos from './servicos';
 
 const menuItems = {
-  items: [dashboard, financeiro, atendimentos, clientes, funcionarios, servicos]
+  items: [
+    dashboard,
+    financeiro,
+    atendimentos,
+    clientes,
+    funcionarios,
+    servicos
+  ]
 };
 
 export default menuItems;

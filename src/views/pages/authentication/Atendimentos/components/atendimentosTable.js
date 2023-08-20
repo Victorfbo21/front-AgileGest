@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import PageTitle from 'layout/PageTitle';
 import { useEffect } from 'react';
 
 const AtendimentosTable = () => {
@@ -33,6 +34,9 @@ const AtendimentosTable = () => {
 
     return (
         <>
+            <PageTitle
+                heading='Atendimentos'
+            />
             <Card>
                 <Divider />
                 <TableContainer>
