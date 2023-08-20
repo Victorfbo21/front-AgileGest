@@ -1,11 +1,13 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
+import { CardContent, FormControl, Grid, TextField, Typography, Box, Button, Select, Menu, MenuItem } from '@mui/material';
 import PageTitle from 'layout/PageTitle';
 import InputMask from 'react-input-mask'
 import { toast } from 'react-toastify';
 import ColaboradorService from 'services/colaboradorServices';
+import ServicosServices from 'services/servicosServices';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const NovoColaborador = () => {
 
@@ -14,16 +16,39 @@ const NovoColaborador = () => {
     const [telefone, setTelefone] = useState('')
     const [email, setEmail] = useState('')
     const [data_nacimento, setData_nascimento] = useState('')
-    const [funcao, setFuncao] = useState('')
+
+    const [funcao, setFuncao] = useState([])
+    console.log(funcao)
+    const [servicoSelected, setServicoSelected] = useState('')
+
+    const handleSelectedServico = (e) => {
+        setServicoSelected(e.target.value)
+    }
 
     const handleSubmit = async () => {
         const cadastrarColab = await ColaboradorService.cadastrarColaborador(nome, telefone, email, data_nacimento, funcao)
         if (cadastrarColab) {
-            console.log("Cadastrado!")
             toast.success("Usuário Cadastrado!")
         }
-
     }
+
+    const getServicos = async () => {
+        try {
+            const servicos = await ServicosServices.listarServicos()
+            if (servicos) {
+                setFuncao(servicos)
+
+            }
+
+        }
+        catch (err) {
+            console.log('Erro ao retornar serviços :', err)
+        }
+    }
+
+    useEffect(() => {
+        getServicos();
+    }, [])
 
     return (
         <>
@@ -88,14 +113,22 @@ const NovoColaborador = () => {
 
                                     <TextField
                                         label='Função'
-                                        type='text'
+                                        select
                                         placeholder='Função do Colaborador'
-                                        sx={{ m: 1 }}
+
                                         size='medium'
                                         variant='standard'
-                                        onChange={e => setFuncao(e.target.value)}
+                                        value={servicoSelected}
+                                        onChange={e => handleSelectedServico(e)}
+                                        sx={{ mt: { xs: 2, md: 1 }, m: 1, width: '20%', fontSize: 15 }}
                                     >
+                                        {funcao?.map((func, i) =>
+                                            <MenuItem key={i} value={func.nomeServico}>
+                                                {func.nomeServico}
+                                            </MenuItem>)}
                                     </TextField>
+
+
                                 </Grid>
                                 <Box sx={{ mt: 2 }}>
                                     <AnimateButton>
