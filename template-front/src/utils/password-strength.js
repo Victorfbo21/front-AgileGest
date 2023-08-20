@@ -1,6 +1,3 @@
-/**
- * Password validator
- */
 import value from 'assets/scss/_themes-vars.module.scss';
 
 const hasNumber = (number) => new RegExp(/[0-9]/).test(number);

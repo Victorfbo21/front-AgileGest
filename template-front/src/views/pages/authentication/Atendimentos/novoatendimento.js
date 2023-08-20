@@ -1,13 +1,11 @@
 import MainCard from 'ui-component/cards/MainCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { CardContent, FormControl, Grid, TextField, Typography, Box, Button } from '@mui/material';
-import { toast } from 'react-toastify';
 
 const NovoAtendimento = () => {
 
-  const handleSubmit = () => {
-    toast.error('Email ou Senha incorretos !')
-    console.log('Chamado')
+  const handleSubmit = async () => {
+    console.log('Cadastrado !')
   }
 
   return (

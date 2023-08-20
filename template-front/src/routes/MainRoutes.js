@@ -8,6 +8,8 @@ const NovoCliente = Loadable(lazy(() => import('views/pages/authentication/Clien
 const NovoColaborador = Loadable(lazy(() => import('views/pages/authentication/Colaborador/novoColaborador')))
 const NovoServico = Loadable(lazy(() => import('views/pages/authentication/Servicos/novoservico')))
 const AtendimentosTable = Loadable(lazy(() => import('views/pages/authentication/Atendimentos/components/atendimentosTable')))
+const ServicosTable = Loadable(lazy(() => import('views/pages/authentication/Servicos/components/servicosTable')))
+
 
 
 const MainRoutes = {
@@ -37,6 +39,10 @@ const MainRoutes = {
     {
       path: '/novoservico',
       element: <NovoServico />
+    },
+    {
+      path: '/servicosTable',
+      element: <ServicosTable />
     }
 
 

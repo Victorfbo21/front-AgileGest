@@ -49,7 +49,7 @@ const FirebaseLogin = ({ ...others }) => {
     console.log(userLogin._id)
     if (userLogin._id != undefined) {
       await toast.success('Cadastrado com sucesso !')
-      navigate('/dashboard')
+      navigate('/dashboardfinanceiro')
     }
     else {
       toast.error('Falha no Login')

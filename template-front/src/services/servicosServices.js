@@ -1,14 +1,15 @@
 
 export default class ServicosServices {
 
-    static cadastrarServico = async (nomeServico, valorServico, tempoMedio,) => {
+    static cadastrarServico = async ({ servico }) => {
+
         try {
-            const register = await fetch(`${process.env.REACT_APP_BASE_URL}/servico`, {
+            const register = await fetch(`${process.env.REACT_APP_BASE_URL}/servico/create`, {
                 method: 'PUT',
                 body: JSON.stringify({
-                    nomeServico: nomeServico,
-                    valor: valorServico,
-                    tempoMedio: tempoMedio,
+                    nomeServico: servico.nomeServico,
+                    valor: servico.valorServico,
+                    tempoMedio: servico.tempoMedio,
                     isActive: true
                 }),
                 headers: {
@@ -28,5 +29,40 @@ export default class ServicosServices {
             return null;
         }
     };
+
+    static listarServicos = async () => {
+        try {
+            const servicos = await fetch(`${process.env.REACT_APP_BASE_URL}/servico/list`, {
+                method: 'GET'
+            })
+                .then(response => response.json());
+
+            if (servicos) {
+                return servicos
+            }
+            else {
+                return error
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    static deletarServico = async (id) => {
+        try {
+            const servicoToDeleted = await fetch(`${process.env.REACT_APP_BASE_URL}/servico/delete/${id}`, {
+                method: 'DELETE',
+
+            })
+                .then(response => response.json())
+            if (servicoToDeleted) {
+                return servicoToDeleted
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
 
 }

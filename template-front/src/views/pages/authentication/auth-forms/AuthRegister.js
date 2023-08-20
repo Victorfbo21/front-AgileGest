@@ -63,7 +63,7 @@ const RegisterPage = () => {
     console.log(registrar._id)
     if (registrar._id) {
       toast.success('Cadastrado !')
-      navigate('/dashboard')
+      navigate('/dashboardfinanceiro')
     }
     else {
       toast.error('Erro as Cadastrar')
