@@ -144,7 +144,7 @@ const ServicosTable = () => {
                                                     sx={{
 
                                                     }}
-                                                    color="inherit"
+                                                    color="error"
                                                     size="small"
                                                     onClick={(e) => deleteServico(serv._id)}
                                                 >
